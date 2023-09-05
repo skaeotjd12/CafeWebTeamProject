@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.cafe.dao.PostDao">
+	
+	<select id="list" resultType="com.green.cafe.dto.PostDto" parameterType="com.green.cafe.dto.SearchCriteria">
+        SELECT post_no
+         	 , post_writer
+         	 , post_title
+         	 , post_content
+         	 , post_hit
+         	 , post_like
+         	 , post_regdate
+         	 , post_moddate
+         	 , reply_count
+         FROM ( select post_no
+		         	 , post_writer
+		         	 , post_title
+		         	 , post_content
+		         	 , post_hit
+		         	 , post_like
+		         	 , post_regdate
+		         	 , post_moddate
+		         	 , reply_count
+		         	 , row_number() over (order by post_no DESC) as rNum
+		        FROM   post
+		        WHERE  1 = 1
+		        <include refid="search"></include>
+		        			 ) list
+         WHERE rNum between #{rowStart} and #{rowEnd}
+         ORDER BY post_no DESC
+    </select>
+
+    <select id="contentView" parameterType="hashmap" resultType="com.green.cafe.dto.PostDto">
+        SELECT post_no
+         	 , post_writer
+         	 , post_title
+         	 , post_content
+         	 , post_hit
+         	 , post_like
+         	 , post_regdate
+         	 , post_moddate
+         	 , file_name
+         	 , ROUND(file_size/1024, 1) AS FILE_SIZE
+          FROM post
+		 WHERE post_no = #{post_no}
+    </select>
+
+    <insert id="write" parameterType="hashmap">
+		INSERT INTO post(post_no
+			           , post_writer
+			           , post_title
+			           , post_content
+			           , post_hit
+			           , post_regdate
+			           , post_moddate
+			           , file_name
+			           , stored_file_name
+			           , file_size)
+		VALUES(post_no_seq.nextval
+		   , #{post_writer}
+		   , #{post_title}
+		   , #{post_content}
+		   , 0
+		   , DEFAULT
+		   , SYSDATE
+		   , #{file_name}
+		   , #{stored_file_name}
+		   , #{file_size})
+    </insert>
+
+    <update id="modify" parameterType="hashmap">
+		UPDATE post SET post_title = #{post_title}
+				  	  , post_content = #{post_content}
+					  , post_moddate = SYSDATE
+			   	  WHERE post_no = #{post_no}
+    </update>
+    
+    <delete id="delete" parameterType="hashmap">
+		DELETE FROM post WHERE post_no = #{post_no}
+    </delete>
+	
+	<select id="listCount" parameterType="com.green.cafe.dto.SearchCriteria" resultType="int">
+			SELECT COUNT(post_no)
+			  FROM post
+			 WHERE 1=1 
+			 <include refid="search"></include>
+			 AND post_no > 0
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND post_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND post_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND post_writer LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (post_title LIKE '%' || #{keyword} || '%') or (post_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<update id="update_view" parameterType="hashmap">
+		UPDATE POST
+		   SET POST_HIT = POST_HIT + 1
+		 WHERE POST_NO = #{post_no}
+	</update>
+	
+	<select id="file_info" resultType="com.green.cafe.dto.PostDto">
+		SELECT POST_REGDATE
+			 , FILE_NAME
+		     , STORED_FILE_NAME
+		  FROM POST
+		 WHERE POST_NO = #{post_no}
+		   AND FILE_NAME = #{file_name}
+	</select>
+	
+</mapper>

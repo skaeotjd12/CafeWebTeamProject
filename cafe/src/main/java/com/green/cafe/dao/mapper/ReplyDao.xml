@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.cafe.dao.ReplyDao">
+
+
+    	<insert id="addReply" parameterType="hashmap">
+    	INSERT INTO 
+		    	REPLY(reply_no
+			    	, post_no
+			    	, reply_content
+			    	, mem_id
+			    	, reply_parent
+			    	, reply_depth) 
+    	       VALUES(REPLY_SEQ.nextval
+		    	       , #{post_no}
+		    	       , #{reply_content}
+		    	       , #{mem_id}
+		    	       , REPLY_SEQ.nextval
+		    	       , 0)
+    </insert>
+    
+    
+      <select id="replyList" parameterType="hashmap" resultType="com.green.cafe.dto.ReplyDto">
+   			  	  SELECT reply_no
+					    ,post_no
+					    ,reply_content
+					    ,mem_id
+					    ,reply_regdate
+					    ,reply_parent
+					    ,reply_depth
+					    ,reply_writer
+				    FROM REPLY
+				     WHERE post_no = #{post_no}
+				  ORDER BY reply_parent, reply_no asc
+    	</select>
+    
+    
+    <update id="updateReplyCount" parameterType="hashmap">
+	update post b
+	set b.reply_count = (select count(*) from reply where post_no = #{post_no})
+	where b.post_no = #{post_no}
+</update>
+
+
+<insert id="regReply" parameterType="hashMap">
+		insert into reply(
+        	reply_no,
+        	post_no,
+			reply_content,
+			mem_id,
+			reply_parent,
+			reply_depth,
+            reply_writer
+		)values(
+			REPLY_SEQ.nextval,
+			#{post_no},
+			#{reply_content},
+			#{mem_id},
+            #{reply_no},
+			1,
+           (select mem_id from reply
+            where reply_depth = 0 and reply_writer = 'user' and reply_parent = #{reply_no})
+            )
+</insert>
+ <delete id="deleteReplyOne" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		reply
+    	where
+    		reply_no = #{reply_no}
+    </delete>
+    <delete id="deleteReplyAll" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		reply
+    	where
+    		reply_no in (
+		    	select
+		    		reply_no
+		    	from
+		    		reply
+		    	where
+		    		reply_no = #{reply_no}
+    		) or reply_parent in (
+		    	select
+		    		reply_no
+		    	from
+		    		reply
+		    	where
+		    		reply_no = #{reply_no}
+    		)
+    </delete>
+    
+       
+    <update id="updateReply" parameterType="hashmap">
+		    UPDATE reply SET reply_content = #{reply_content}
+			   	  WHERE reply_no = #{reply_no}
+	</update>
+
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.cafe.dao.MemDao">
+	<!-- 로그인 : 아이디/비번이 테이블에 있는지 검색 -->
+    <select id="loginYn" parameterType="hashmap" resultType="com.green.cafe.dto.MemDto">  
+		SELECT mem_pw FROM member where mem_id=#{mem_id}
+    </select>
+    <!-- 관리자가 전체 회원을 다 조회하는 쿼리 -->
+    <select id="memberView" resultType="com.green.cafe.dto.MemDto">  
+    	SELECT MEM_ID, MEM_NAME, MEM_EMAIL, MEM_TEL,MEM_REGDATE, MEM_DAYS, MEM_LEVEL, MEM_POST
+    	  FROM MEMBER ORDER BY MEM_REGDATE DESC
+    </select>
+    <!-- 로그인 후 회원정보확인 -->
+    <select id="loginView" parameterType="hashmap" resultType="com.green.cafe.dto.MemDto">  
+		SELECT * FROM member where mem_id=#{mem_id}
+    </select>
+    <!-- 회원가입 -->
+    <insert id="register" parameterType="hashmap">
+    	insert into member(mem_id, mem_pw, mem_name, mem_tel, mem_email) 
+    		 values (#{mem_id},#{mem_pw},#{mem_name},#{mem_tel},#{mem_email})
+    </insert>
+    <!-- 정보변경 -->
+    <update id="updateInfo" parameterType="hashmap">
+    	update member SET mem_pw=#{mem_pw}
+						, mem_name=#{mem_name}
+						, mem_tel=#{mem_tel}
+						, mem_email=#{mem_email} 
+				    where mem_id=#{mem_id}
+    </update>
+    <!-- 탈퇴 -->
+    <delete id="deleteMember" parameterType="hashmap">
+    	delete from member where mem_id=#{mem_id} 
+    </delete>
+    <!-- 가입 후 경과일수 count 쿼리 -->
+	<update id="countDays">
+ 		update member SET mem_days=TRUNC(sysdate-mem_regdate)
+ 	</update>
+ 	<!-- TRUNC 소수점 버림(ROUND는 소수점 올림) -->
+ 	
+ 	
+ 	<!-- 회원등급관리 -->
+ 	<!-- 레벨1 에서 레벨2로 업데이트 / 가입 후 7일 경과 시 자동상향 / 회원이 로그인 할때 가능토록 설정(가입 후 기간경과해도 회원이 로그인하지 않으면 관리자페이지에서는 미적용)-->
+   	<update id="levelUp_auto" parameterType="hashmap">
+   		update member SET mem_level = 2 where mem_level = 1 and mem_id=#{mem_id}
+   	</update>
+   	
+   	<!-- 레벨2 에서 레벨3으로 조정하는 부분 / 관리자 회원관리탭에서 가능하게 조정 / 관리자 로그인 후 전체회원조회시 버튼생성, 버튼누르면 조정할 수 있도록 -->
+   	<update id="levelUp_admin" parameterType="hashmap">
+   		update member SET mem_level = 3 where mem_level = 2 and mem_id=#{mem_id}
+   	</update>
+ 	<!-- 레벨3 에서 레벨2으로 강등 -->
+   	<update id="levelDown_admin" parameterType="hashmap">
+   		update member SET mem_level = 2 where mem_level = 3 and mem_id=#{mem_id}
+   	</update>
+</mapper>
