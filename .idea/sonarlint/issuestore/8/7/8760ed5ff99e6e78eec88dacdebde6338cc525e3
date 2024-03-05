@@ -1,0 +1,30 @@
+
+d
+java:S1192?"NDefine a constant instead of duplicating this literal "redirect:list" 3 times.(€‡ê¼
+x
+java:S1319<"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(ŠƒÃ
+}
+java:S1319D"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(–ºïùÿÿÿÿ
+w
+java:S1319^"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(èığ
+x
+java:S1319h"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(´úºó
+x
+java:S1319t"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(ğò¥ª
+~
+java:S1319"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(¯ƒ–œùÿÿÿÿ
+k	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Ôªşÿÿÿÿ
+k	java:S117I"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒûô¼şÿÿÿÿ
+X
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813$"BRemove this field injection and use constructor injection instead.(êæÄŞ
+h	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“¡âºúÿÿÿÿ
+h	java:S100D"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ºïùÿÿÿÿ
+b	java:S100^"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èığ
+i	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯ƒ–œùÿÿÿÿ
+F	java:S106‚"+Replace this use of System.out by a logger.(·…éœúÿÿÿÿ
+d
+java:S5361…"HReplace this call to "replaceAll()" by a call to the "replace()" method.(·ààüùÿÿÿÿ
+B
+java:S1075ˆ"&Remove this hard-coded path-delimiter.(¢ûóÀşÿÿÿÿ

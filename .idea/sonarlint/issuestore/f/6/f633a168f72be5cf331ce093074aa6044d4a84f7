@@ -1,0 +1,57 @@
+
+]
+java:S1192@"GDefine a constant instead of duplicating this literal "mem_id" 4 times.(’ß”µ
+k
+java:S1192™"TDefine a constant instead of duplicating this literal "redirect:memberView" 3 times.(«µèè
+e
+java:S1192:"JDefine a constant instead of duplicating this literal "loginView" 6 times.(Ú˜ê±ıÿÿÿÿ
+k
+java:S1192."VDefine a constant instead of duplicating this literal "redirect:../post/list" 3 times.(¼Š.
+}
+java:S13192"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(§ğşŒøÿÿÿÿ
+}
+java:S1319]"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(İëşÿÿÿÿ
+x
+java:S1319e"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(ÄäÏã
+}
+java:S1319m"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(Ëš ³ÿÿÿÿÿ
+}
+java:S1319x"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(¹Ûœéúÿÿÿÿ
+~
+java:S1319"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(°÷µ×şÿÿÿÿ
+~
+java:S1319 "bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(úŸ—âùÿÿÿÿ
+~
+java:S1319ª"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(Ñƒ‚øÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+@	java:S106"+Replace this use of System.out by a logger.(æşá—
+E	java:S106'"+Replace this use of System.out by a logger.(·ˆôÌûÿÿÿÿ
+V
+java:S1117(";Rename "session" which hides the field declared at line 26.(ÎèıÌùÿÿÿÿ
+@	java:S106*"+Replace this use of System.out by a logger.(ÛÎ¢
+E	java:S106-"+Replace this use of System.out by a logger.(ëÕˆüÿÿÿÿ
+E	java:S1063"+Replace this use of System.out by a logger.(Å¬—Ìøÿÿÿÿ
+@	java:S1067"+Replace this use of System.out by a logger.(«ŒËË
+@	java:S106;"+Replace this use of System.out by a logger.(­Èœ¾
+V	java:S125?"<This block of commented-out lines of code should be removed.(Ã­†¢ûÿÿÿÿ
+@	java:S106C"+Replace this use of System.out by a logger.(Àğ¡º
+E	java:S106D"+Replace this use of System.out by a logger.(¢€”Êúÿÿÿÿ
+E	java:S106H"+Replace this use of System.out by a logger.(Ïäıÿÿÿÿ
+@	java:S106V"+Replace this use of System.out by a logger.(‚è‰ô
+E	java:S106`"+Replace this use of System.out by a logger.(Ô¨º¸ùÿÿÿÿ
+@	java:S106f"+Replace this use of System.out by a logger.(Ì”Ãğ
+?	java:S106n"+Replace this use of System.out by a logger.(ÕµŞv
+E	java:S106p"+Replace this use of System.out by a logger.(äÎÇİşÿÿÿÿ
+E	java:S106s"+Replace this use of System.out by a logger.(ŞÆÖâûÿÿÿÿ
+@	java:S106y"+Replace this use of System.out by a logger.(ÿÆÉ
+F	java:S106ƒ"+Replace this use of System.out by a logger.(˜ãêÍıÿÿÿÿ
+A	java:S106"+Replace this use of System.out by a logger.(÷Å¶
+F	java:S106"+Replace this use of System.out by a logger.(Ş«şÿÿÿÿ
+A	java:S106•"+Replace this use of System.out by a logger.(êˆ¶ª
+i	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úŸ—âùÿÿÿÿ
+A	java:S106¡"+Replace this use of System.out by a logger.(Ø¯Œ›
+F	java:S106¤"+Replace this use of System.out by a logger.(úïÎ÷üÿÿÿÿ
+i	java:S100ª"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñƒ‚øÿÿÿÿ
+F	java:S106«"+Replace this use of System.out by a logger.(ö¢Èïûÿÿÿÿ
+F	java:S106®"+Replace this use of System.out by a logger.(¶Üªÿùÿÿÿÿ
